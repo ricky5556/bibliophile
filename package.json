@@ -1,0 +1,26 @@
+{
+  "name": "bibliophile",
+  "version": "1.0.0",
+  "description": "An Application for book exchange",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricky5556/bibliophile.git"
+  },
+  "author": "shashaank",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ricky5556/bibliophile/issues"
+  },
+  "homepage": "https://github.com/ricky5556/bibliophile#readme",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-env": "^1.1.8",
+    "react": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0"
+  }
+}
