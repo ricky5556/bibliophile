@@ -1,3 +1,5 @@
+
+![alt tag](https://github.com/ricky5556/bibliophile/blob/master/src/assets/img/logo.png)
 # Bibliophile
 
 1. clone git repository
