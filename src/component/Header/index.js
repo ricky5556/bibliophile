@@ -5,7 +5,7 @@ const Header = () => {
     <div>
       <span className='bib-logo'>
       </span>
-      <h1>Bibliophile</h1>
+      <h1>Bibliophile Test Commit</h1>
     </div>
 
   )
