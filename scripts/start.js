@@ -38,16 +38,7 @@ var handleCompile;
 
 // You can safely remove this after ejecting.
 // We only use this block for testing of Create React App itself:
-var isSmokeTest = process.argv.some(arg => arg.indexOf('--smoke-test') > -1);
-if (isSmokeTest) {
-  handleCompile = function (err, stats) {
-    if (err || stats.hasErrors() || stats.hasWarnings()) {
-      process.exit(1);
-    } else {
-      process.exit(0);
-    }
-  };
-}
+
 
 function setupCompiler(host, port, protocol) {
   // "Compiler" is a low-level interface to Webpack.
@@ -97,30 +88,30 @@ function setupCompiler(host, port, protocol) {
       isFirstCompile = false;
     }
 
-    // If errors exist, only show errors.
-    if (messages.errors.length) {
-      console.log(chalk.red('Failed to compile.'));
-      console.log();
-      messages.errors.forEach(message => {
-        console.log(message);
-        console.log();
-      });
-      return;
-    }
+    // // If errors exist, only show errors.
+    // if (messages.errors.length) {
+      // console.log(chalk.red('Failed to compile.'));
+      // console.log();
+      // messages.errors.forEach(message => {
+        // console.log(message);
+        // console.log();
+      // });
+      // return;
+    // }
 
-    // Show warnings if no errors were found.
-    if (messages.warnings.length) {
-      console.log(chalk.yellow('Compiled with warnings.'));
-      console.log();
-      messages.warnings.forEach(message => {
-        console.log(message);
-        console.log();
-      });
-      // Teach some ESLint tricks.
-      console.log('You may use special comments to disable some warnings.');
-      console.log('Use ' + chalk.yellow('// eslint-disable-next-line') + ' to ignore the next line.');
-      console.log('Use ' + chalk.yellow('/* eslint-disable */') + ' to ignore all warnings in a file.');
-    }
+    // // Show warnings if no errors were found.
+    // if (messages.warnings.length) {
+      // console.log(chalk.yellow('Compiled with warnings.'));
+      // console.log();
+      // messages.warnings.forEach(message => {
+        // console.log(message);
+        // console.log();
+      // });
+      // // Teach some ESLint tricks.
+      // console.log('You may use special comments to disable some warnings.');
+      // console.log('Use ' + chalk.yellow('// eslint-disable-next-line') + ' to ignore the next line.');
+      // console.log('Use ' + chalk.yellow('/* eslint-disable */') + ' to ignore all warnings in a file.');
+    // }
   });
 }
 
@@ -185,24 +176,24 @@ function addMiddleware(devServer) {
     // Tip: use https://jex.im/regulex/ to visualize the regex
     var mayProxy = /^(?!\/(index\.html$|.*\.hot-update\.json$|sockjs-node\/)).*$/;
 
-    // Pass the scope regex both to Express and to the middleware for proxying
-    // of both HTTP and WebSockets to work without false positives.
-    var hpm = httpProxyMiddleware(pathname => mayProxy.test(pathname), {
-      target: proxy,
-      logLevel: 'silent',
-      onProxyReq: function(proxyReq, req, res) {
-        // Browers may send Origin headers even with same-origin
-        // requests. To prevent CORS issues, we have to change
-        // the Origin to match the target URL.
-        if (proxyReq.getHeader('origin')) {
-          proxyReq.setHeader('origin', proxy);
-        }
-      },
-      onError: onProxyError(proxy),
-      secure: false,
-      changeOrigin: true,
-      ws: true
-    });
+    // // Pass the scope regex both to Express and to the middleware for proxying
+    // // of both HTTP and WebSockets to work without false positives.
+    // var hpm = httpProxyMiddleware(pathname => mayProxy.test(pathname), {
+      // target: proxy,
+      // logLevel: 'silent',
+      // onProxyReq: function(proxyReq, req, res) {
+        // // Browers may send Origin headers even with same-origin
+        // // requests. To prevent CORS issues, we have to change
+        // // the Origin to match the target URL.
+        // if (proxyReq.getHeader('origin')) {
+          // proxyReq.setHeader('origin', proxy);
+        // }
+      // },
+      // onError: onProxyError(proxy),
+      // secure: false,
+      // changeOrigin: true,
+      // ws: true
+    // });
     devServer.use(mayProxy, hpm);
 
     // Listen for the websocket 'upgrade' event and upgrade the connection.
